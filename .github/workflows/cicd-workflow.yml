@@ -31,4 +31,4 @@ jobs:
         run: docker rm -f ticket-management-container
 
       - name: Run Docker container
-        run: docker run -d -p 4000:4000 --name ticket-management-container hemantyadavv/ticket-management:latest
+        run: docker run -d -p 4000:4000 --name ticket-management-container -e MONGO_URI=`${{ secrets.MONGO_URI }}` hemantyadavv/ticket-management:latest
