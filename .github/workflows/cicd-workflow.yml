@@ -1,0 +1,34 @@
+name: CICD
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Login to docker hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} 
+
+      - name: Build docker image
+        run: docker build -t hemantyadavv/ticket-management .
+
+      - name: Publish image to docker hub
+        run: docker push hemantyadavv/ticket-management:latest
+        
+  deploy:
+    needs: build
+    runs-on: [aws-ec2]
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull hemantyadavv/ticket-management:latest
+
+      - name: Delete old container
+        run: docker rm -f ticket-management-container
+
+      - name: Run Docker container
+        run: docker run -d -p 4000:4000 --name ticket-management-container hemantyadavv/ticket-management:latest
