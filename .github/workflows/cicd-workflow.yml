@@ -36,7 +36,7 @@ jobs:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           PORT: ${{ secrets.PORT }}
 
-        run: docker run -d -p 4000:4000 --name ticket-management-container -e MONGO_URI=`${{ secrets.MONGO_URI }}` hemantyadavv/ticket-management:latest
+        run: docker run -d -p 4000:4000 --name ticket-management-container -e MONGO_URI=${{ secrets.MONGO_URI }} hemantyadavv/ticket-management:latest
 
       - name: Fetch application logs
         run: docker logs ticket-management-container
