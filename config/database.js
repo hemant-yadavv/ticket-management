@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const dbConnect = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URI || `mongodb+srv://hemant:hemantpe@cluster0.43iaz.mongodb.net/ticketManagement?retryWrites=true&w=majority`);
+        await mongoose.connect(process.env.MONGO_URI);
         console.log('MongoDB connected');
     } catch (error) {
         console.error(error.message);
