@@ -31,5 +31,5 @@ dbConnect();
 
 // default route
 app.get("/", (req, res) => { 
-    res.send(`<h1>Welcome here , using CI/CD and Github Actions ${process.env.MONGO_URI} ${process.env.PORT}  hehe </h1>`);
+    res.send(`<h1>Welcome here , using CI/CD and Github Actions at ${process.env.PORT} PORT  hehe </h1>`);
 })

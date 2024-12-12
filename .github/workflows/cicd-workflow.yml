@@ -28,11 +28,17 @@ jobs:
         run: docker pull hemantyadavv/ticket-management:latest
 
       - name: Delete old container
-        run: docker rm -f ticket-management-container
+        run: docker rm -f ticket-management-container || true
 
       - name: Run Docker container
+        env:
+          PORT: ${{ secrets.PORT }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
 
-        run: docker run -d -p ${{ secrets.PORT }}:4000 --name ticket-management-container -e MONGO_URI=${{ secrets.MONGO_URI }} -e PORT=${{ secrets.PORT }} hemantyadavv/ticket-management:latest
+        run: docker run -d -p ${{ secrets.PORT }}:4000 --name ticket-management-container -e MONGO_URI=${{ secrets.MONGO_URI }} hemantyadavv/ticket-management:latest
 
-      - name: Fetch application logs
+      - name: Wait for container to start
+        run: sleep 10
+
+      - name: Fetch logs
         run: docker logs ticket-management-container
