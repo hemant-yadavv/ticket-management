@@ -6,6 +6,14 @@ yarn-error.log
 # Environment variables
 .env
 
+# Docker
+Dockerfile
+.dockerignore
+
+# Git
+.git
+.gitignore
+
 # Logs
 logs
 *.log
