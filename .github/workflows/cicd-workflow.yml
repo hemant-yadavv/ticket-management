@@ -34,10 +34,11 @@ jobs:
         env:
           PORT: ${{ secrets.PORT }}
           MONGO_URI: ${{ secrets.MONGO_URI }}
-        run: docker run -d -p ${{ secrets.PORT }}:4000 --name ticket-management-container \
-          -e MONGO_URI=${{ secrets.MONGO_URI }} \
-          -e PORT=${{ secrets.PORT }} \
-          hemantyadavv/ticket-management:latest
+        run: |
+          docker run -d -p ${{ secrets.PORT }}:4000 --name ticket-management-container \
+            -e MONGO_URI=${{ secrets.MONGO_URI }} \
+            -e PORT=${{ secrets.PORT }} \
+            hemantyadavv/ticket-management:latest
 
       - name: Wait for container to start
         run: sleep 10
