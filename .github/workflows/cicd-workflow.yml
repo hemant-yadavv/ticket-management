@@ -34,7 +34,6 @@ jobs:
         env:
           PORT: ${{ secrets.PORT }}
           MONGO_URI: ${{ secrets.MONGO_URI }}
-
         run: docker run -d -p ${{ secrets.PORT }}:4000 --name ticket-management-container \
           -e MONGO_URI=${{ secrets.MONGO_URI }} \
           -e PORT=${{ secrets.PORT }} \
