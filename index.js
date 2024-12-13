@@ -31,5 +31,5 @@ dbConnect();
 
 // default route
 app.get("/", (req, res) => { 
-    res.send(`<h1>Welcome here , using CI/CD and Github Actions at ${process.env.PORT} PORT  hehe 2.0</h1>`);
+    res.send(`<h1>Welcome here , using CI/CD and Github Actions at ${process.env.PORT} PORT  hehe 2.0 test</h1>`);
 })
